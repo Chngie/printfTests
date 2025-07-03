@@ -1,0 +1,8 @@
+#!/bin/sh
+
+echo -n "Ensuring clean folder... " && wait && cd .. && make -s fclean && wait && echo "Done."
+echo -n "Making bonus... " && make -s bonus && wait && cd tests && echo "Done."
+echo -n "Compiling bonus..." && cc -s -Wall -Werror -Wextra -I.. -o test main_bonus.c ../libftprintf.a ../libft/libft.a && wait && echo "Done."
+valgrind ./test && wait
+echo -n "Cleaning folder... " && cd .. && make -s fclean && wait && cd tests && wait && rm -f test && echo "Done."
+echo "Completed."
